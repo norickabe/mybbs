@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>トピック一覧</h1>
+  <ul class="list-group">
+    <% @topics.each do |topic| %>
+      <li class="list-group-item">
+        <%= link_to topic.title, topics_show_path(topic.id) %>
+        <%= link_to "削除", topic_delete_path(topic.id), class: 'btn btn-info btn-xs', method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+      </li>
+    <% end %>
+  </ul>
+  <h1>トピック新規登録</h1>
+  <%= form_for @newTopic, :url => {:action => 'create'} do |f| %>
+    <%= f.text_field :title %>
+    <%= f.submit class: "btn btn-primary"%>
+  <% end %>
+</div>
